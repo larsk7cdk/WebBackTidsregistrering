@@ -10,8 +10,8 @@ using WebBackTidsregistrering.Persistance.Identity;
 namespace WebBackTidsregistrering.Persistance.Identity.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20190429205846_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20190501155915_initialcreate")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

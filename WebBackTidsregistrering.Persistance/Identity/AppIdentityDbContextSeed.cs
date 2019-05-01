@@ -10,7 +10,12 @@ namespace WebBackTidsregistrering.Persistance.Identity
             var user = await userManager.FindByEmailAsync("lars@k7c.dk");
             if (user != null) return;
 
-            var defaultUser = new IdentityUser {UserName = "lars", Email = "lars@k7c.dk"};
+            var defaultUser = new IdentityUser
+            {
+                Email = "lars@k7c.dk",
+                UserName = "lars@k7c.dk"
+            };
+
             await userManager.CreateAsync(defaultUser, "P@ssword1");
         }
     }
