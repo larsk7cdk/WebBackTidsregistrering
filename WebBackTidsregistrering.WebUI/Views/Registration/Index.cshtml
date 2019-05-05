@@ -1,0 +1,49 @@
+﻿@model IEnumerable<WebBackTidsregistrering.WebUI.ViewModels.Registration.RegistrationsViewModel>
+
+@{
+    ViewData["Title"] = "Registreringer";
+}
+
+<h1>Registreringer</h1>
+
+<p>
+    <a asp-controller="Registration" asp-action="Create">Opret ny registrering</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+      <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+  <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+    
+            <td>
+                <a asp-controller="Registration" asp-action="Edit" asp-route-id="@item.Id">Rediger</a> |
+                <a asp-controller="Registration" asp-action="Details" asp-route-id="@item.Id">Detaljer</a> |
+                <a asp-controller="Registration" asp-action="Delete" asp-route-id="@item.Id">Slet</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

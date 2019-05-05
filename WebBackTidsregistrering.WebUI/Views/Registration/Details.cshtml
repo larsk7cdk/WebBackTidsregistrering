@@ -1,0 +1,42 @@
+﻿@model WebBackTidsregistrering.WebUI.ViewModels.Registration.RegistrationsViewModel
+
+@{
+    ViewData["Title"] = "Detaljer";
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h1>Detaljer for registrering</h1>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <dl class="row">
+           <dt class="col-5">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-5">
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt class="col-5">
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+        </dl>
+
+
+        <div>
+            <a asp-controller="Registration" asp-action="Edit" asp-route-id="@Model.Id">Rediger</a> |
+            <a asp-action="Index">Tilbage til registreringer</a>
+        </div>
+    </div>
+</div>

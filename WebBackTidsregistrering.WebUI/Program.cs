@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Serilog;
+using WebBackTidsregistrering.Persistance.Data;
 using WebBackTidsregistrering.Persistance.Identity;
 
 namespace WebBackTidsregistrering.WebUI
@@ -12,24 +14,34 @@ namespace WebBackTidsregistrering.WebUI
     {
         public static void Main(string[] args)
         {
+      
+
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.RollingFile("Logs/web-ui.log")
+                .CreateLogger();
+
+            Log.Information("hallloooooo");
+
             var host = CreateWebHostBuilder(args)
                 .Build();
-
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+                //var loggerFactory = services.GetRequiredService<ILoggerFactory>();
+
 
                 try
                 {
                     var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
                     AppIdentityDbContextSeed.SeedAsync(userManager).Wait();
+
+                    var context = scope.ServiceProvider.GetService<AppDataDbContext>();
+                    AppDataDbContextSeed.Seed(context);
                 }
 
                 catch (Exception ex)
                 {
-                    var logger = loggerFactory.CreateLogger<Program>();
-                    logger.LogError(ex, "An error occurred seeding the DB.");
+                    Log.Error(ex, "Fejl ved opstart af Tidsregistrering Web UI");
                 }
             }
 
@@ -39,6 +51,7 @@ namespace WebBackTidsregistrering.WebUI
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return WebHost.CreateDefaultBuilder(args)
+                .UseSerilog()
                 .UseStartup<Startup>();
         }
     }
