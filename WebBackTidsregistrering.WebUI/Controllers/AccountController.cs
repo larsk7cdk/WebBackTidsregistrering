@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using WebBackTidsregistrering.WebUI.ViewModels.Account;
 
@@ -49,6 +52,9 @@ namespace WebBackTidsregistrering.WebUI.Controllers
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
+            ViewBag.CurrentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()
+                .RequestCulture.Culture.ToString();
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
@@ -56,6 +62,9 @@ namespace WebBackTidsregistrering.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
+            ViewBag.CurrentCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>()
+                .RequestCulture.Culture.ToString();
+
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
@@ -82,6 +91,21 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             await _signInManager.SignOutAsync();
 
             return RedirectToAction(nameof(HomeController.Index), "Home");
+        }
+
+        public IActionResult SetCulture([FromQuery] string culture)
+        {
+            //_logger.LogInformation($"Language changed to {culture}");
+
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)}
+            );
+
+            ViewBag.CurrentCulture = culture;
+
+            return View("Login");
         }
 
         // ACCESS DENIED

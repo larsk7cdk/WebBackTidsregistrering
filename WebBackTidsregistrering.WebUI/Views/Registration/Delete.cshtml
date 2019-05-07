@@ -1,0 +1,46 @@
+﻿@model WebBackTidsregistrering.WebUI.ViewModels.Registration.RegistrationsViewModel
+
+@{
+    ViewData["Title"] = "Slet";
+}
+
+
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <h1>Slet registrering</h1>
+        <br />
+        <h3>Er du sikker på du vil slette registreringen?</h3>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <dl class="row">
+            @Html.HiddenFor(model => model.Id)
+            <dt class="col-5">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-5">
+                @Html.DisplayNameFor(model => model.StartTime)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.StartTime)
+            </dd>
+            <dt class="col-5">
+                @Html.DisplayNameFor(model => model.EndTime)
+            </dt>
+            <dd class="col-7">
+                @Html.DisplayFor(model => model.EndTime)
+            </dd>
+        </dl>
+
+        <form asp-action="Slet">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            <a asp-action="Index">Tilbage til registreringer</a>
+        </form>
+    </div>
+</div>

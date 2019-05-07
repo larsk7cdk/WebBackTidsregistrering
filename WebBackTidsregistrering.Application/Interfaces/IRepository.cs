@@ -22,9 +22,9 @@ namespace WebBackTidsregistrering.Application.Interfaces
 
         Task UpdateAsync(T entity);
 
-        void Delete(T entity);
+        void Delete(int id);
 
-        Task DeleteAsync(T entity);
+        Task DeleteAsync(int id);
 
         int Count(Func<T, bool> predicate);
     }

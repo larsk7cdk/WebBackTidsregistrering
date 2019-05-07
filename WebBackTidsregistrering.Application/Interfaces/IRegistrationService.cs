@@ -9,6 +9,8 @@ namespace WebBackTidsregistrering.Application.Interfaces
         IEnumerable<Registration> GetAllByIdAsync(string userId);
         Task<Registration> GetByIdAsync(int id);
 
-        Task CreateAsync(Registration registration);
+        Task CreateAsync(Registration entity);
+        Task UpdateAsync(Registration entity);
+        Task DeleteAsync(int id);
     }
 }

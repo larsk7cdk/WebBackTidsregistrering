@@ -60,14 +60,16 @@ namespace WebBackTidsregistrering.Persistance.Data
             await SaveAsync();
         }
 
-        public void Delete(T entity)
+        public void Delete(int id)
         {
+            var entity = Context.Set<T>().Find(id);
             Context.Remove(entity);
             Save();
         }
 
-        public async Task DeleteAsync(T entity)
+        public async Task DeleteAsync(int id)
         {
+            var entity = Context.Set<T>().Find(id);
             Context.Remove(entity);
             await SaveAsync();
         }

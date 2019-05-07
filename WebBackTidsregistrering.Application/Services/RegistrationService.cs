@@ -25,15 +25,8 @@ namespace WebBackTidsregistrering.Application.Services
             await _registrationRepository.CreateAsync(entity);
         }
 
+        public async Task UpdateAsync(Registration entity) => await _registrationRepository.UpdateAsync(entity);
 
-        //public async Task<IList<Registration>> GetAllByIdAsync(string userId)
-        //{
-        //    return await RegistrationRepository.GetAllAsync(). .Where(x => x.UserId == userId);
-        //}
-
-        //public async Task<Registration> GetByIdAsync(string userId, int id)
-        //{
-        //    //       return await Context.Registrations.FirstOrDefaultAsync(x => x.UserId == userId && x.Id == id);
-        //}
+        public async Task DeleteAsync(int id) => await _registrationRepository.DeleteAsync(id);
     }
 }
