@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MailKit" Version="2.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\WebBackTidsregistrering.Application\WebBackTidsregistrering.Application.csproj" />
   </ItemGroup>
 

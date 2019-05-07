@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using WebBackTidsregistrering.Application.Interfaces;
 using WebBackTidsregistrering.WebUI.ViewModels.Account;
 
 namespace WebBackTidsregistrering.WebUI.Controllers
@@ -11,13 +12,15 @@ namespace WebBackTidsregistrering.WebUI.Controllers
     public class AccountController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IEmailService _emailService;
         private readonly UserManager<IdentityUser> _userManager;
 
         public AccountController(
-            UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+            UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
 
         // REIGSTER
@@ -40,7 +43,11 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                if (result.Succeeded) return RedirectToAction("Login", "Account");
+                if (result.Succeeded)
+                {
+                    await _emailService.SendEmail(user.Email, "Velkommen til Tidsregistrering", "Velkommen meddelelse til brugeren!");
+                    return RedirectToAction("Login", "Account");
+                }
 
                 foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
             }
@@ -100,7 +107,7 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)}
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
             );
 
             ViewBag.CurrentCulture = culture;

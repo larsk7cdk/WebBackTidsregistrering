@@ -16,6 +16,7 @@ using Microsoft.Extensions.Logging;
 using WebBackTidsregistrering.Application.Interfaces;
 using WebBackTidsregistrering.Application.Services;
 using WebBackTidsregistrering.Domain.Entities;
+using WebBackTidsregistrering.Infrastructure.Services;
 using WebBackTidsregistrering.Persistance.Data;
 using WebBackTidsregistrering.Persistance.Identity;
 
@@ -89,6 +90,7 @@ namespace WebBackTidsregistrering.WebUI
 
             services.AddTransient<IRepository<Registration>, Repository<Registration>>();
             services.AddTransient<IRegistrationService, RegistrationService>();
+            services.AddTransient<IEmailService, EmailService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
