@@ -96,8 +96,6 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            _logger.LogInformation("Test");
-
             var data = await _registrationService.GetByIdAsync(id);
 
             var model = new RegistrationViewModel
