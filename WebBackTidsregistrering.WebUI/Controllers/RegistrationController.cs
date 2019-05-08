@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -28,7 +27,7 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
         public async Task<ActionResult> Index()
         {
-            _logger.LogInformation("Test");
+            _logger.LogInformation("Vis registreringer");
 
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
             var data = _registrationService.GetAllByIdAsync(user.Id).ToList();
@@ -44,10 +43,9 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             return View(models);
         }
 
-        // GET: Registration/Details/5
         public async Task<ActionResult> Details(int id)
         {
-            _logger.LogInformation("Test");
+            _logger.LogInformation($"Vis detaljer for registrering {id}");
 
             var data = await _registrationService.GetByIdAsync(id);
 
@@ -62,7 +60,6 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             return View(model);
         }
 
-        // GET: Registration/Create
         public ActionResult Create()
         {
             var model = new RegistrationViewModel
@@ -74,12 +71,13 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             return View(model);
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Create([Bind("Date", "StartTime", "EndTime")] RegistrationViewModel model)
         {
             if (!ModelState.IsValid)
                 return View(model);
+
+            _logger.LogInformation("Opret registrering");
 
             var user = await _userManager.FindByNameAsync(User.Identity.Name);
 
@@ -96,50 +94,71 @@ namespace WebBackTidsregistrering.WebUI.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Registration/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            _logger.LogInformation("Test");
+
+            var data = await _registrationService.GetByIdAsync(id);
+
+            var model = new RegistrationViewModel
+            {
+                Id = data.Id,
+                UserId = data.UserId,
+                Date = data.Date,
+                StartTime = data.StartTime,
+                EndTime = data.EndTime.GetValueOrDefault()
+            };
+
+            return View(model);
         }
 
-        // POST: Registration/Edit/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit([Bind("Id", "UserId", "Date", "StartTime", "EndTime")]
+            RegistrationViewModel model)
         {
-            try
-            {
-                // TODO: Add update logic here
+            if (!ModelState.IsValid)
+                return View(model);
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+            _logger.LogInformation($"Opdater registrering {model.Id}");
+
+            var entity = new Registration
             {
-                return View();
-            }
+                Id = model.Id,
+                UserId = model.UserId,
+                Date = model.Date,
+                StartTime = model.StartTime,
+                EndTime = model.EndTime
+            };
+
+            await _registrationService.UpdateAsync(entity);
+
+            return RedirectToAction("Index");
         }
 
-        // GET: Registration/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var data = await _registrationService.GetByIdAsync(id);
+
+            var model = new RegistrationsViewModel
+            {
+                Id = data.Id,
+                Date = data.Date,
+                StartTime = data.StartTime,
+                EndTime = data.EndTime.GetValueOrDefault()
+            };
+
+            return View(model);
         }
 
-        // POST: Registration/Delete/5
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete([Bind("Id", "UserId", "Date", "StartTime", "EndTime")]
+            RegistrationViewModel model)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            _logger.LogInformation($"Slet registrering {model.Id}");
 
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _registrationService.DeleteAsync(model.Id);
+
+            return RedirectToAction("Index");
         }
     }
 }

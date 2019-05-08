@@ -1,4 +1,4 @@
-namespace WebBackTidsregistrering.WebUI.Models
+namespace WebBackTidsregistrering.WebUI.ViewModels
 {
     public class ErrorViewModel
     {

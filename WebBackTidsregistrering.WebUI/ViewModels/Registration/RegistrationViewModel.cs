@@ -6,6 +6,7 @@ namespace WebBackTidsregistrering.WebUI.ViewModels.Registration
     public class RegistrationViewModel
     {
         public int Id { get; set; }
+        public string UserId { get; set; }
 
         [Display(Name = "Dato")]
         //[DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]

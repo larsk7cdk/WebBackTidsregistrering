@@ -114,11 +114,5 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
             return View("Login");
         }
-
-        // ACCESS DENIED
-        //public IActionResult AccessDenied()
-        //{
-        //    return View("AccessDenied");
-        //}
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WebBackTidsregistrering.WebUI.Models;
+using WebBackTidsregistrering.WebUI.ViewModels;
 
 namespace WebBackTidsregistrering.WebUI.Controllers
 {
