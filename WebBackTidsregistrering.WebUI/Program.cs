@@ -20,15 +20,11 @@ namespace WebBackTidsregistrering.WebUI
                 .WriteTo.RollingFile("Logs/web-ui.log")
                 .CreateLogger();
 
-            Log.Information("hallloooooo");
-
             var host = CreateWebHostBuilder(args)
                 .Build();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                //var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-
 
                 try
                 {
