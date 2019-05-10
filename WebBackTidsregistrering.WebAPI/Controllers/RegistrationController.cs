@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using Halcyon.HAL;
 using Halcyon.Web.HAL;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebBackTidsregistrering.Application.Interfaces;
+using WebBackTidsregistrering.Domain.Entities;
 using WebBackTidsregistrering.WebAPI.Models;
 
 namespace WebBackTidsregistrering.WebAPI.Controllers
@@ -64,6 +66,45 @@ namespace WebBackTidsregistrering.WebAPI.Controllers
             response.AddEmbeddedCollection("registrations", result);
             response.AddLinks(
                 new Link("self", "/api/registration/", null, "GET")
+            );
+
+            return this.HAL(response);
+        }
+        
+        /// <summary>
+        ///     Vis detaljer for registrering
+        /// </summary>
+        /// <returns>Registreringer</returns>
+        /// <response code="200">Returner detaljer for registrering ved angivet id</response>
+        [Consumes("application/json", "application/hal+json")]
+        [Produces("application/json", "application/hal+json")]
+        [ProducesResponseType(200)]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetRegistration([Required]int id)
+        {
+            _logger.LogInformation($"Vis detaljer for registrering {id}");
+
+            var data = await _registrationService.GetByIdAsync(id);
+
+            var result =  new RegistrationsModel
+            {
+                Id = data.Id,
+                Date = data.Date,
+                StartTime = data.StartTime,
+                EndTime = data.EndTime.GetValueOrDefault()
+            };
+
+
+            var responseConfig = new HALModelConfig
+            {
+                LinkBase = $"{Request.Scheme}://{Request.Host.ToString()}",
+                ForceHAL = Request.ContentType == "application/hal+json"
+            };
+
+            var response = new HALResponse(responseConfig);
+            response.AddEmbeddedResource("registration", result);
+            response.AddLinks(
+                new Link("self", $"/api/registration/{id}", null, "GET")
             );
 
             return this.HAL(response);
