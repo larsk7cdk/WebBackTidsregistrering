@@ -27,8 +27,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBackTidsregistrering.Uni
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBackTidsregistrering.IntegrationTests", "WebBackTidsregistrering.IntegrationTest\WebBackTidsregistrering.IntegrationTests.csproj", "{2B0E7403-D5DE-49BA-8D79-5F78CBDF5656}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBackTidsregistrering.FunctionalTests", "WebBackTidsregistrering.FunctionalTests\WebBackTidsregistrering.FunctionalTests.csproj", "{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E9FF7353-D3F2-41F2-AF39-939D7AB1ADC1}"
 	ProjectSection(SolutionItems) = preProject
 		learning.md = learning.md
@@ -70,10 +68,6 @@ Global
 		{2B0E7403-D5DE-49BA-8D79-5F78CBDF5656}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B0E7403-D5DE-49BA-8D79-5F78CBDF5656}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B0E7403-D5DE-49BA-8D79-5F78CBDF5656}.Release|Any CPU.Build.0 = Release|Any CPU
-		{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1157D23E-BAD1-414F-9868-07ACD3B1B050}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1157D23E-BAD1-414F-9868-07ACD3B1B050}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1157D23E-BAD1-414F-9868-07ACD3B1B050}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,7 +87,6 @@ Global
 		{D9E3C195-E913-4E61-ACA1-75CC6CC2FBEF} = {3E2F6624-36D9-4233-A86B-53430F2EC5E0}
 		{255730BE-089A-4FC6-AD41-75BE2F083B37} = {BD483BBE-CF22-49B9-B409-4ADA4E862413}
 		{2B0E7403-D5DE-49BA-8D79-5F78CBDF5656} = {BD483BBE-CF22-49B9-B409-4ADA4E862413}
-		{66CFD45F-79EA-4C25-ACFD-34B2DF049ABB} = {BD483BBE-CF22-49B9-B409-4ADA4E862413}
 		{1157D23E-BAD1-414F-9868-07ACD3B1B050} = {3E2F6624-36D9-4233-A86B-53430F2EC5E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
