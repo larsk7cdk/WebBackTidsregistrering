@@ -34,7 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E9FF7353-D
 		learning.md = learning.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebBackTidsregistrering.WebAPI", "WebBackTidsregistrering.WebAPI\WebBackTidsregistrering.WebAPI.csproj", "{1157D23E-BAD1-414F-9868-07ACD3B1B050}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBackTidsregistrering.WebAPI", "WebBackTidsregistrering.WebAPI\WebBackTidsregistrering.WebAPI.csproj", "{1157D23E-BAD1-414F-9868-07ACD3B1B050}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

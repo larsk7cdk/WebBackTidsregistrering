@@ -46,7 +46,7 @@ namespace WebBackTidsregistrering.WebUI.Controllers
                 if (result.Succeeded)
                 {
                     await _emailService.SendEmail(user.Email, "Velkommen til Tidsregistrering", "Velkommen meddelelse til brugeren!");
-                    return RedirectToAction("Login", "Account");
+                    return RedirectToAction(nameof(Login), "Account");
                 }
 
                 foreach (var error in result.Errors) ModelState.AddModelError(string.Empty, error.Description);
@@ -82,7 +82,7 @@ namespace WebBackTidsregistrering.WebUI.Controllers
                 {
                     if (Url.IsLocalUrl(returnUrl))
                         return Redirect(returnUrl);
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                    return RedirectToAction(nameof(RegistrationController.Index), "Registration");
                 }
 
                 ModelState.AddModelError(string.Empty, "Login forsøg mislykkedes.");

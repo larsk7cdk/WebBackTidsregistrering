@@ -3,7 +3,6 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Serilog;
 using WebBackTidsregistrering.Persistance.Data;
 using WebBackTidsregistrering.Persistance.Identity;
@@ -14,8 +13,6 @@ namespace WebBackTidsregistrering.WebUI
     {
         public static void Main(string[] args)
         {
-      
-
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.RollingFile("Logs/web-ui.log")
                 .CreateLogger();
