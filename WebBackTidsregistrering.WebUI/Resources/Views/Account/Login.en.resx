@@ -121,6 +121,6 @@
     <value>Log in</value>
   </data>
   <data name="ButtonRegister" xml:space="preserve">
-    <value>Registrer as a new user?</value>
+    <value>Registrer as a new employee?</value>
   </data>
 </root>

@@ -11,12 +11,13 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IEmailService _emailService;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
 
         public AccountController(
-            UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IEmailService emailService)
+            UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+            IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -45,7 +46,9 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
                 if (result.Succeeded)
                 {
-                    await _emailService.SendEmail(user.Email, "Velkommen til Tidsregistrering", "Velkommen meddelelse til brugeren!");
+                    await _emailService.SendEmail(user.Email,
+                        "Velkommen til Tidsregistrering",
+                        "Velkomst meddelelse til medarbejderen!");
                     return RedirectToAction(nameof(Login), "Account");
                 }
 
@@ -102,12 +105,10 @@ namespace WebBackTidsregistrering.WebUI.Controllers
 
         public IActionResult SetCulture([FromQuery] string culture)
         {
-            //_logger.LogInformation($"Language changed to {culture}");
-
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
-                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                new CookieOptions {Expires = DateTimeOffset.UtcNow.AddYears(1)}
             );
 
             ViewBag.CurrentCulture = culture;
