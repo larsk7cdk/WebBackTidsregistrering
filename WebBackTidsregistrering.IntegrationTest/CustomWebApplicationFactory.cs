@@ -38,10 +38,12 @@ namespace WebBackTidsregistrering.IntegrationTests
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
-                    var db = scopedServices.GetRequiredService<AppDataDbContext>();
+                    var dbIdentityDbContext = scopedServices.GetRequiredService<AppIdentityDbContext>();
+                    var dbAppDataDbContext = scopedServices.GetRequiredService<AppDataDbContext>();
                     var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
-                    db.Database.EnsureCreated();
+                    dbIdentityDbContext.Database.EnsureCreated();
+                    dbAppDataDbContext.Database.EnsureCreated();
                 }
             });
         }

@@ -6,9 +6,9 @@ using Xunit;
 
 namespace WebBackTidsregistrering.IntegrationTests.Controllers
 {
-    public class TodoControllerTest : IClassFixture<CustomWebApplicationFactory<Startup>>
+    public class RegistrationControllerIntegrationTest : IClassFixture<CustomWebApplicationFactory<Startup>>
     {
-        public TodoControllerTest(CustomWebApplicationFactory<Startup> factory)
+        public RegistrationControllerIntegrationTest(CustomWebApplicationFactory<Startup> factory)
         {
             _factory = factory;
             _client = factory.CreateClient();

@@ -1,20 +1,30 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+# Introduktion
+Dette projekt indeholder eksamensopgave for faget Webudvikling Backend
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+# Kom igang
+For at komme igang med at afvikle projektet skal connectstring til SQL Server tilrettes og databasen skal oprettes
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
 
-If you want to learn more about creating good readme files then refer the following [guidelines](https://www.visualstudio.com/en-us/docs/git/create-a-readme). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+#### For at opdatere databasen
+1. Start package manager console
+2. Skift Default project WebBackTidsregistrering.Persistance
+3. cd .\WebBackTidsregistrering.Persistance
+4. dotnet ef database update -c AppIdentityDbContext
+5. dotnet ef database update -c AppDataDbContext
+
+### Start MVC projekt
+1. Start en kommando prompt 
+2. Skift til mappen .\WebBackTidsregistrering\WebBackTidsregistrering.WebUI
+3. Skriv dotnet restore og tryk enter
+4. Skriv dotnet run og tryk enter
+5. Åbn en webbrowser og indtast url'en http://localhost:5001
+
+
+### Start WEB API projekt
+1. Start en kommando prompt 
+2. Skift til mappen .\WebBackTidsregistrering\WebBackTidsregistrering.WebAPI
+3. Skriv dotnet restore og tryk enter
+4. Skriv dotnet run og tryk enter
+5. Åbn en webbrowser og indtast url'en http://localhost:5003
+6. Dette vil åbne swagger
