@@ -30,6 +30,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{E9FF7353-D3F2-41F2-AF39-939D7AB1ADC1}"
 	ProjectSection(SolutionItems) = preProject
 		learning.md = learning.md
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebBackTidsregistrering.WebAPI", "WebBackTidsregistrering.WebAPI\WebBackTidsregistrering.WebAPI.csproj", "{1157D23E-BAD1-414F-9868-07ACD3B1B050}"

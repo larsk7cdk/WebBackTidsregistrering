@@ -11,13 +11,11 @@ For at komme igang med at afvikle projektet skal connectstring til SQL Server ti
 2. Tilret server under ConnectionStrings
 3. Åbn filen appsettings.json i .\WebBackTidsregistrering\WebBackTidsregistrering.WebAPI
 4. Tilret server under ConnectionStrings
-
 5. Start package manager console
 6. Skift Default project WebBackTidsregistrering.Persistance
 7. cd .\WebBackTidsregistrering.Persistance
 8. dotnet ef database update -c AppIdentityDbContext
 9. dotnet ef database update -c AppDataDbContext
-
 10. For at kunne afsende E-mail skal oplysninger for MailKit klienten opdateres
 11. Åbn filen .\WebBackTidsregistrering\WebBackTidsregistrering.Infrastructure\Services\EmailService.cs
 12. Tilret linie 18 med en gyldig SMTP host
