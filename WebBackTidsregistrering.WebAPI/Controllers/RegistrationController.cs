@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using WebBackTidsregistrering.Application.Interfaces;
-using WebBackTidsregistrering.Domain.Entities;
 using WebBackTidsregistrering.WebAPI.Models;
 
 namespace WebBackTidsregistrering.WebAPI.Controllers

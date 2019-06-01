@@ -120,7 +120,7 @@ namespace WebBackTidsregistrering.WebAPI
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Currency Converter V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Tidsregistrering V1");
                 c.RoutePrefix = string.Empty;
             });
 
